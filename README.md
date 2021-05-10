@@ -1,5 +1,4 @@
 # Tudo é possível para Mulheres que compartilham ideais!
-
 Acesse a rede clicando aqui https://social-network-lab-pnd.web.app/
 
 ## Índice
@@ -75,6 +74,9 @@ Há potência em mulheres construtoras de igualdade.
   * 61% comunicam-se através de fotos e vídeos.
 
 ## Histórias de usuário
+
+![Persona1](img/PersonaAna.jpeg)
+![Persona2](img/PersonaMaria.jpeg)
 
 1. Eu como usuária gostaria de ter como opção de validação o e-mail;
 2. Eu como usuária gostaria de ter como opção de validação o login Google;

@@ -1,22 +1,29 @@
-// Este é seu ponto de entrada da sua aplicação
-import { onNavigate } from './utils/history.js';
-import { Feed } from './pages/feed/index.js';
-import { Home } from './pages/inicial-page/about.js';
-import { userOn } from './services/index.js';
+import { onNavigate } from "./utils/history.js";
+import { Feed } from "./pages/feed/index.js";
+import { Home, homeFunctions } from "./pages/home/home.js";
+import { feedFunctions } from "./pages/feed/feed.js";
 
-  const routeRender = () => {
-  const rootDiv = document.getElementById('root');
+const routeRender = () => {
+  const rootDiv = document.getElementById("root");
   const routes = {
-    '/' : Home ,
-    '/feed' : Feed
+    "/": Home,
+    "/feed": Feed
   };
-  rootDiv.innerHTML = '';
+  rootDiv.innerHTML = "";
   rootDiv.appendChild(routes[window.location.pathname]());
 };
 
-window.addEventListener('popstate', routeRender);
-window.addEventListener('load', () => {
-    onNavigate('/');
-    userOn();  
-    routeRender();
-});
+window.addEventListener("popstate", routeRender);
+window.addEventListener("load", (event) => {
+  event.preventDefault();
+ 
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+     onNavigate("/feed")
+     feedFunctions();
+    } else {
+      onNavigate("/"); 
+      homeFunctions();
+    }  
+  });
+}); 
