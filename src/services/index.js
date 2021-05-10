@@ -1,203 +1,91 @@
-import { onNavigate } from '../utils/history.js';
+const db = firebase.firestore();
 
-   // Your web app's Firebase configuration
-   const firebaseConfig = {
-    apiKey: "AIzaSyCbZDARuyhS8ESOT1gKUou6G7oOOikC8sM",
-    authDomain: "social-network-lab-pnd.firebaseapp.com",
-    projectId: "social-network-lab-pnd",
-    storageBucket: "social-network-lab-pnd.appspot.com",
-    messagingSenderId: "693936274709",
-    appId: "1:693936274709:web:840380126cb7b04fcf7d1c"
-  };
-  // Initialize Firebase
- 
-  firebase.initializeApp(firebaseConfig);
-  const dataBase = firebase.firestore()
+export const fb = {
+  signUp: (email, password) => {
+    return firebase.auth().createUserWithEmailAndPassword(email, password);
+  },
 
-// FUNÇÃO FIREBASE -> CADASTRO
+  signIn: (email, password) => {
+    return firebase.auth().signInWithEmailAndPassword(email, password);
+  },
 
-    export const subscribe = (email, password, name) => {
-      let userLog = firebase.auth().currentUser
+  signOut: () => {
+    return firebase.auth().signOut();
+  },
 
-      firebase.auth().createUserWithEmailAndPassword(email, password).then((user) => {
-      console.log('usuário', user);
-      }).catch((error) => {
-        let errorCode = error.code;
-        let errorMessage = error.message;
-        return {errorCode, errorMessage}
-      })
-    }
+  signUpGoogle: () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    firebase
+    .auth()
+    .signInWithPopup(provider)
+    .then((user) => {
+      console.log(user.user);
+    })
+    .catch((err) => {
+      alert("Houve algum problema, tente uma conta diferente", err)
+    });
+  },
 
-export function errorRegister(){
-  
-  let email = document.getElementById('new-email').value;
-  let password = document.getElementById('password-register').value;
-  let userName = document.getElementById('name').value;
-
- if(userName =="" || userName.lengtht < 5)
- {
-   alert( "Preencha seu NOME corretamente!" );
-   userName.focus();
-   return false;
- }
- 
- 
- if( email =="" || email.indexOf('@')==-1 || email.indexOf('.')==-1 )
- {
-   alert( "Preencha seu E-MAIL corretamente!" );
-   email.focus();
-   return false;
- }
- 
- if(password =="" || password == "")
- {
-   alert( "Preencha seu NOME corretamente!" );
-   password.focus();
- return false;
- }
- 
- alert( "Cadastro realizado com sucesso" );
- return true;
-}
-
-
-// FUNÇÕES FIREBASE -> LOGIN
-
-
-    export const emailLogin = (email,password) => {
-
-      firebase.auth().signInWithEmailAndPassword(email, password).then(() =>{
-        console.log('Usuario logado');
-      }).catch(error => {
-        console.log ('error', error);
-      })
-    }
-
-    export const googleLogin = () => {
-      let provider = new firebase.auth.GoogleAuthProvider();
-
-      firebase.auth().signInWithPopup(provider).then(result => {
-        let token = result.credential.accessToken;
-        let user = result.user;
-
-        console.log('usuário', user)
-        console.log('token', token);
-      }).catch (error => {
-        let errorCode = error.code;
-        let errorMessage = error.message;
-        let email = error.email;
-        let credential = error.credential;
-
-        console.log('erro', errorCode, errorMessage, email, credential);
-      }) 
-    }
-
-// FUNÇÃO DE CONFIRMAÇÃO : USUÁRIO LOGADO
-
-    export const userOn = () => {
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (user) { 
-          document.getElementById('main-page').style.display = "none";
-          document.getElementById('root').style.width = "100%";
-          onNavigate('/feed');
-          Post();
-          logOut();     
-      } 
-      else {
-        document.getElementById('main-page').style.display = "block";
-        onNavigate('/');
-      }
-    }) 
-    }
-// FUNÇÕES FIREBASE -> FEED
-
-
-export const Post = () => {
-
-  document.getElementById('post-it').addEventListener('click', (e) => {
-     e.preventDefault();
-     let userId = firebase.auth().currentUser.uid
-     let postText = document.getElementById('write-post').value
-             
-        dataBase.collection('Posts').add({
-        post_text: postText,
-        date: new Date(),
-        id_user: userId,
-        username: firebase.auth().currentUser.displayName,
+  createPost: (postText) => {
+    const id = firebase.auth().currentUser.uid;
+    const date = new Date();
+    db.collection("Posts")
+      .add({
+        id_user: id,
+        date: date.toLocaleString(),
         likes: [],
-        loveIt: []
+        loveIt: [],
+        post_text: `${postText}`,
       })
-      .then(function() {
-        document.getElementById('write-post').value = " ";
-        onNavigate('/feed');
-        console.log("Post enviado com sucesso!");
+      .then(() => {
+        window.location.reload();
       })
-      .catch(function() {
-        console.error("Ocorreu um erro");
+      .catch((error) => {
+        alert(
+          "Houve algum problema, recarregue a página e tente novamente: ",
+          error
+        );
       });
-    })
-  } 
- 
-  export const getPosts = () => {
-    const post = dataBase.collection('Posts').orderBy("date", "desc")
-    return post.get()
-    };
-     
-  export const Like = (id) => {
-    let userId = firebase.auth().currentUser.uid
-    dataBase.collection('Posts').doc(`${id}`).update({
-    likes: firebase.firestore.FieldValue.arrayUnion(userId)
-    }).then(() => {
-      onNavigate('/feed');
-    })
-  }
-  export const Dislike = (id) => {
-    let userId = firebase.auth().currentUser.uid
-    dataBase.collection('Posts').doc(`${id}`).update({
-    likes: firebase.firestore.FieldValue.arrayRemove(userId)
-     }).then(() => {
-      onNavigate('/feed');
-    })
-   }
+  },
 
-  export const Love = (id) => {
-    let userId = firebase.auth().currentUser.uid
-    dataBase.collection('Posts').doc(`${id}`).update({
-      loveIt: firebase.firestore.FieldValue.arrayUnion(userId)
-    }).then(() => {
-      onNavigate('/feed');
-    })
-  }
-  export const Unlove = (id) => {
-    let userId = firebase.auth().currentUser.uid
-    dataBase.collection('Posts').doc(`${id}`).update({
-     loveIt: firebase.firestore.FieldValue.arrayRemove(userId)
-     }).then(() => {
-      onNavigate('/feed');
-    })
-   }
+  getAllPosts: () => {
+    return db.collection("Posts").orderBy("date", "desc").get();
+  },
 
-  const logOut = () => {
-           
-    document.getElementById('log-out').addEventListener("click", logOut)
-    function logOut() {
-       firebase.auth().signOut().then(() => {
-        document.getElementById('root').innerHTML= " ";
-        document.getElementById('main-page').style.display = "block";           
-        })
-       }  
-      }
+  likePost: (postId) => {
+    const userId = firebase.auth().currentUser.uid;
+    db.collection("Posts")
+      .doc(postId)
+      .update({
+        likes: firebase.firestore.FieldValue.arrayUnion(userId),
+      })
+      .then(() => console.log("You liked it"))
+      .catch((error) => console.log(error));
+  },
 
-
-      export const DeletePost = (id) => {
-        dataBase.collection('Posts').doc(id).delete().then(() => {
-            console.log('Postagem Deletada');
-            onNavigate('/feed');
-          })
-          .catch((error) => {
-            console.error('Erro ao excluir o post: ', error);
-          });
-        }
-
-
-    
+  lovePost: (postId) => {
+    const userId = firebase.auth().currentUser.uid;
+    db.collection("Posts")
+      .doc(postId)
+      .update({
+        loveIt: firebase.firestore.FieldValue.arrayUnion(userId),
+      })
+      .then(() => console.log("You loved it"))
+      .catch((error) => console.log(error));
+  },
+  
+  deletePost: (postId) => {
+    db.collection("Posts")
+      .doc(postId)
+      .delete()
+      .then(() => {
+        window.location.reload();
+      })
+      .catch((error) => {
+        alert(
+          "Houve algum problema, recarregue a página e tente novamente.",
+          error
+        );
+      });
+  },
+};
