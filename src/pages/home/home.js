@@ -8,7 +8,7 @@ export const Home = () => {
   rootElement.innerHTML = `
     <div class="main-itens">
       <img src="../images/women.png">
-       <div class=about-text>
+       <div class="about-text">
          <h1>Sobre</h1>
          <p>
             Além da Sobrevivência - Um Espaço Seguro para Mulheres 

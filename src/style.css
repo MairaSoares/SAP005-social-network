@@ -37,13 +37,14 @@ header {
   font-size: 3rem;
   color: #c5961f;
   margin-bottom: 1.5rem;
+  padding-top: 50px;
 }
 
 .about-text p {
   text-align: justify;
   font-size: 1.5rem;
   font-family: monospace;
-  color: #461e1e;  
+  color: #461e1e;
 }
 
 .login-area form {
