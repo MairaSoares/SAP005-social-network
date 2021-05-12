@@ -20,7 +20,7 @@ export const Home = () => {
           <ul class="home-buttons-container">
             <li><button class="home-buttons login">Login</button></li>
             <li><button class="home-buttons subscribe">Inscreva-se</button></li>
-            <li><button class="google-login">Login com o <span>Google<span></button></li>
+            <li><button class="google-login">Conecte-se com sua conta<img class="google-icon" src="../images/google-icon.png"></button></li>
           </ul>
         <div>
     </div>
