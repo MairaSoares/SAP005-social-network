@@ -10,14 +10,12 @@ export const Home = () => {
       <img src="../images/women.png">
        <div class="about-text">
          <h1>Sobre</h1>
-         <p>
-            Além da Sobrevivência - Um Espaço Seguro para Mulheres 
-            “Sororidade é a ideia de solidariedade entre mulheres, 
-            que se apoiam para conquistar a liberdade e a igualdade que desejam. 
-            É respeitar, ouvir e dar voz umas às outras sem julgamentos”
+         <p class="text-sobre">
+            Para além da Sobrevivência - Um Espaço Seguro para Mulheres!
             Esse espaço é destinado às mulheres que procuram um espaço seguro 
             para compartilhar planos, sonhos, desafios, oportunidades e encontrar
             apoio e fortalecimento. Há potência em mulheres construtoras de igualdade.
+            
          </p>
           <ul class="home-buttons-container">
             <li><button class="home-buttons login">Login</button></li>

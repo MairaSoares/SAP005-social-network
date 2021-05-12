@@ -111,6 +111,10 @@ header {
   font-weight: bolder;
 }
 
+.text-sobre{
+  padding-left: 100px;
+}
+
 .feed-container {
   padding-top: 6rem;
   background-color: #f9f2e6;
