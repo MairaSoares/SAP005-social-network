@@ -5,6 +5,7 @@ module.exports = {
       {
         targets: {
           node: 'current',
+          port: process.env.PORT || 5000
         },
       },
     ],
