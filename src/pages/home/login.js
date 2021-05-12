@@ -6,7 +6,9 @@ export const Login = () => {
   container.innerHTML = `
     <div class="login-area">
       <form>
+        <p class="form-login">E-mail:</p>
         <input class="email-input" type="text" placeholder="Digite seu email">
+        <p class="form-login">Password:</p>
         <input class="password-input" type="password" autocomplete="off" placeholder="Digite sua senha">
         <p id="alert"><p>
         <input class="home-buttons" type="submit" value="Entrar">

@@ -6,6 +6,7 @@
 body {
   background: linear-gradient(to right, #eacfc2, #f7ebe6);
 }
+
 header {
   background-color: #461e1e;
   color: #f9f4ed;
@@ -28,6 +29,7 @@ header {
   align-items: center;
   height: 100%;
 }
+
 .about-text {
   width: 50%;
 }
@@ -37,19 +39,21 @@ header {
   font-size: 3rem;
   color: #c5961f;
   margin-bottom: 1.5rem;
+  padding-top: 50px;
 }
 
 .about-text p {
   text-align: justify;
   font-size: 1.5rem;
   font-family: monospace;
-  color: #461e1e;  
+  color: #461e1e;
 }
 
 .login-area form {
   display: flex;
   flex-flow: column;
   align-items: center;
+  padding-top: 100px;
 }
 
 .login-area input {
@@ -62,34 +66,77 @@ header {
   padding: 0.1rem;
 }
 
+.form-login{
+  padding-right: 200px;
+}
+
 .home-buttons-container {
   list-style: none;
   display: flex;
   justify-content: flex-end;
+  padding-left: 100px;
 }
 
 .home-buttons,
 .logout-button,
 .return-button {
-  background-color: #9a7575;
   padding: 0.5rem;
-  font-size: 1.5rem;
   color: rgb(248, 242, 234);
-  border-radius: 0.5rem;
-  font-weight: bold;
   margin: 2rem 0.7rem 0 0;
+  min-width: 150px;
+  min-height: 40px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+  background: #9a7575;
+  background-image: linear-gradient(326deg, #861657 0%, #9c372d 74%);
+
+  border: none;
+  border-radius: 1000px;
+  box-shadow: 12px 12px 24px rgba(192, 79, 89, 0.64);
+  transition: all 0.3s ease-in-out 0s;
+  cursor: pointer;
+  outline: none;
+  position: relative;
 }
 
 .google-login {
-  border-radius: 5px;
+
   background-color: white;
-  padding: 0.7rem;
-  font-size: 1.3rem;
-  margin: 2rem 0.7rem 0 0;
   border: 1px solid #b5850c;
+
+  padding: 0.5rem;
+  margin: 2rem 0.7rem 0 0;
+  min-width: 150px;
+  min-height: 40px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+
+  border: none;
+  border-radius: 1000px;
+  box-shadow: 12px 12px 24px rgba(192, 79, 89, 0.64);
+  transition: all 0.3s ease-in-out 0s;
+  cursor: pointer;
+  outline: none;
+  position: relative;
 }
+
 .google-login span {
   font-weight: bolder;
+}
+
+.google-icon{
+  width: 20px;
+  height: 20px;
+}
+
+.text-sobre{
+  padding-left: 100px;
 }
 
 .feed-container {
@@ -184,7 +231,7 @@ header {
 footer {
   background-color: #461e1e;
   color: #a04f08;
-  padding: 1rem;
+  padding: 13px;
   font-size: 1.5rem;
   text-align: end;
 }
