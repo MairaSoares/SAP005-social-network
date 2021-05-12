@@ -6,7 +6,9 @@ export const Register = () => {
   container.innerHTML = `
     <div class="login-area">
     <form>
+      <p class="form-login">E-mail:</p>
       <input class="email-input" type="text" placeholder="Escolha um email">
+      <p class="form-login">Password:</p>
       <input class="password-input" type="password" autocomplete="off" placeholder="Crie uma senha">
       <p class="alert"><p>
       <input class="home-buttons" type="submit" value="Cadastrar">
