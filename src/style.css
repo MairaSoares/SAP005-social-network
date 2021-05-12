@@ -6,6 +6,7 @@
 body {
   background: linear-gradient(to right, #eacfc2, #f7ebe6);
 }
+
 header {
   background-color: #461e1e;
   color: #f9f4ed;
@@ -28,6 +29,7 @@ header {
   align-items: center;
   height: 100%;
 }
+
 .about-text {
   width: 50%;
 }
@@ -207,7 +209,7 @@ header {
 footer {
   background-color: #461e1e;
   color: #a04f08;
-  padding: 1rem;
+  padding: 13px;
   font-size: 1.5rem;
   text-align: end;
 }
