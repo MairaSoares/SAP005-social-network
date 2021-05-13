@@ -33,11 +33,12 @@ export const Register = () => {
           alertArea.innerHTML = "Senha muito fraca";
         }
         if (error.code === "auth/email-already-in-use") {
-          alertArea.innerHTML = "Email já cadastrado";
+          alertArea.innerHTML = "E-mail já cadastrado";
         }
         if (error.code === "auth/invalid-email") {
-          alertArea.innerHTML = "Email inválido";
+          alertArea.innerHTML = "E-mail inválido";
         }
+
       });
   });
 };

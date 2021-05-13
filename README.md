@@ -16,7 +16,7 @@ Acesse a rede clicando aqui https://social-network-lab-pnd--woman-social-network
 
 
 ## Sobre
-![ezgif com-video-to-gif (2)](https://user-images.githubusercontent.com/71895567/113799629-d18d0500-972b-11eb-8e9f-150558658a37.gif)
+![gif-woman](src/images/readmegif.gif)
 
 Apresentamos com muito orgulho o nosso terceiro projeto realizado na Laboratoria!
 

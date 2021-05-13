@@ -34,10 +34,10 @@ export const Login = () => {
           alertArea.innerHTML = "Senha incorreta";
         }
         if (error.code === "auth/user-not-found") {
-          alertArea.innerHTML = "Email não cadastrado";
+          alertArea.innerHTML = "E-mail não cadastrado.";
         }
         if (error.code === "auth/invalid-email") {
-          alertArea.innerHTML = "Email inválido";
+          alertArea.innerHTML = "E-mail inválido.";
         }
       });
   });
